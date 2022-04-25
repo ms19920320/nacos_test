@@ -1,0 +1,13 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /${spring.application.name}
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.220.21.222:8848
+
+  application:
+    name: score
