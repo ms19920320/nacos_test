@@ -3,3 +3,10 @@ spring:
     name: score
   profiles:
     active: dev
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.citycloud.nacostest.score.mapper
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
