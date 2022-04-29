@@ -1,25 +1,26 @@
 spring:
   cloud:
     nacos:
-      server-addr: 124.220.21.222:8848
       username: nacos
       password: nacos
       discovery:
+        server-addr: 124.220.21.222:8848
         namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
       config:
+        server-addr: 124.220.21.222:8848
         namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
         shared-configs[0]:
-          group: common
-          file-extension: yaml
-          data-id: common.yaml
+          group: dev-order-group
+          file-extension: yml
+          data-id: dev-order-application.yml
           refresh: true
         shared-configs[1]:
-          group: db
-          file-extension: yaml
-          data-id: mysql.yaml
+          group: dev-order-group
+          file-extension: yml
+          data-id: dev-order-common.yml
           refresh: true
         shared-configs[2]:
-          group: db
-          file-extension: yaml
-          data-id: redis.yaml
+          group: dev-order-group
+          file-extension: yml
+          data-id: dev-order-api.yml
           refresh: true
