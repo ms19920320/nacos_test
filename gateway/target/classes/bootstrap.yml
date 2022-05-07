@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 124.220.21.222:8848
+        namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
+        group: nacos-test
+      config:
+        server-addr: 124.220.21.222:8848
+        namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
+
+    # 动态路由
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      # 路线
+      routes:
+        # 自身网关地址路由配置
+        - id: gateway
+          uri: lb://gateway
+          predicates:
+            - Path=/gateway/**
+
+        # 服务配置
+        - id: score
+          uri: http://localhost:8090
+          predicates:
+            - Path=/score/**

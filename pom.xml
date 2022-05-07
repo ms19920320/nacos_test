@@ -12,6 +12,7 @@
         <module>order</module>
         <module>order1</module>
         <module>score</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
@@ -46,12 +47,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>
