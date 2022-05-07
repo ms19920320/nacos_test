@@ -34,7 +34,7 @@ public class ScoreController {
 
     @GetMapping("/orderTest")
     public String orderTest() {
-        String forObject = restTemplate.getForObject("", String.class);
+        String forObject = restTemplate.getForObject("http://order/order/orderController/test", String.class);
         return forObject;
     }
 }

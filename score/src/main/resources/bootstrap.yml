@@ -6,9 +6,11 @@ spring:
       discovery:
         server-addr: 124.220.21.222:8848
         namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
+        group: nacos-test
       config:
         server-addr: 124.220.21.222:8848
         namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
+        group: dev-score-group
         shared-configs[0]:
           group: dev-score-group
           file-extension: yml
