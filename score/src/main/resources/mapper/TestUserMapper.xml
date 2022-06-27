@@ -6,8 +6,10 @@
     <resultMap id="BaseResultMap" type="com.citycloud.nacostest.score.entity.TestUser">
         <result column="id" property="id" />
         <result column="name" property="name" />
-        <result column="telphone" property="telphone" />
+        <result column="telephone" property="telephone" />
         <result column="address" property="address" />
     </resultMap>
-
+    <select id="findUsers" resultType="com.citycloud.nacostest.score.entity.TestUser">
+        select * from test_user
+    </select>
 </mapper>

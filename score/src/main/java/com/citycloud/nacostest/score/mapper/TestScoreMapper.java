@@ -2,6 +2,7 @@ package com.citycloud.nacostest.score.mapper;
 
 import com.citycloud.nacostest.score.entity.TestScore;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author ms
  * @since 2022-06-27
  */
+@Mapper
 public interface TestScoreMapper extends BaseMapper<TestScore> {
 
 }

@@ -1,4 +1,4 @@
-package com.citycloud.nacostest.score.service.impl;
+package com.citycloud.nacostest.score.serviceImpl;
 
 import com.citycloud.nacostest.score.entity.TestUser;
 import com.citycloud.nacostest.score.mapper.TestUserMapper;
