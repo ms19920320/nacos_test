@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-06-27
  */
 @RestController
-@RequestMapping("/testScore")
+@RequestMapping("/score/test-score")
 public class TestScoreController {
 
 }
