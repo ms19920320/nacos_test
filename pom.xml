@@ -10,9 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>order</module>
-        <module>order1</module>
         <module>score</module>
         <module>gateway</module>
+        <module>common</module>
+        <module>api</module>
+        <module>stock</module>
+        <module>order</module>
     </modules>
 
     <properties>
