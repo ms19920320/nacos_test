@@ -28,7 +28,7 @@ public class PlusCodeGenerator {
         String username = "root";
         String password = "123456";
         // 表名，多个使用,分隔,实测暂不支持多个表同时生成
-        String tableNames = "test_order";
+        String tableNames = "test_stock";
 
         //====================配置变量区域=====================//
         // 代码生成器
