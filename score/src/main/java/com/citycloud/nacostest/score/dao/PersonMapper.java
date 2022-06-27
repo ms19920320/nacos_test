@@ -1,4 +1,4 @@
-package com.citycloud.nacostest.score.mapper;
+package com.citycloud.nacostest.score.dao;
 
 import com.citycloud.nacostest.score.entity.Person;
 import org.apache.ibatis.annotations.Mapper;

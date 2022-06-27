@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 此处与接口类地址对应 -->
-<mapper namespace="com.citycloud.nacostest.score.mapper.PersonMapper">
+<mapper namespace="com.citycloud.nacostest.score.dao.PersonMapper">
     <select id="getPersons" resultType="com.citycloud.nacostest.score.entity.Person">
         select * from person
     </select>
