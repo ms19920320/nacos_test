@@ -1,7 +1,8 @@
 package com.citycloud.nacostest.score.service;
 
-import com.citycloud.nacostest.score.entity.TestUser;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.citycloud.nacostest.common.entity.TestUser;
 
 /**
  * <p>

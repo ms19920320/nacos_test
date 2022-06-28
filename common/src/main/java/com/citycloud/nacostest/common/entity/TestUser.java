@@ -1,4 +1,4 @@
-package com.citycloud.nacostest.score.entity;
+package com.citycloud.nacostest.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -10,7 +10,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author ms

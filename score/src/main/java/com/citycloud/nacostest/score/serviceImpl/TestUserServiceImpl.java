@@ -1,9 +1,9 @@
 package com.citycloud.nacostest.score.serviceImpl;
 
-import com.citycloud.nacostest.score.entity.TestUser;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.citycloud.nacostest.common.entity.TestUser;
 import com.citycloud.nacostest.score.mapper.TestUserMapper;
 import com.citycloud.nacostest.score.service.TestUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

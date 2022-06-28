@@ -3,13 +3,13 @@
 <mapper namespace="com.citycloud.nacostest.score.mapper.TestUserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.citycloud.nacostest.score.entity.TestUser">
+    <resultMap id="BaseResultMap" type="com.citycloud.nacostest.common.entity.TestUser">
         <result column="id" property="id" />
         <result column="name" property="name" />
         <result column="telephone" property="telephone" />
         <result column="address" property="address" />
     </resultMap>
-    <select id="findUsers" resultType="com.citycloud.nacostest.score.entity.TestUser">
+    <select id="findUsers" resultType="com.citycloud.nacostest.common.entity.TestUser">
         select * from test_user
     </select>
 </mapper>

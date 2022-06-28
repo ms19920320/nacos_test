@@ -1,7 +1,7 @@
 package com.citycloud.nacostest.score.mapper;
 
-import com.citycloud.nacostest.score.entity.TestUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.citycloud.nacostest.common.entity.TestUser;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
