@@ -34,7 +34,7 @@ public class TestUser implements Serializable {
 
     @ApiModelProperty("手机号码")
     @TableField("telephone")
-    private Long telephone;
+    private String telephone;
 
     @ApiModelProperty("地址")
     @TableField("address")
