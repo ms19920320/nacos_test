@@ -13,50 +13,68 @@ import java.io.Serializable;
  * @since 2022/3/16
  */
 public class ResValue implements Serializable {
-    // 响应码
+    /**
+     * 响应是否成功标志
+     */
+    private boolean success;
+
+    /**
+     * 响应码，主要在错误的时候区分错误类型
+     */
     public int code;
 
-    // 描述
-    public String desc;
+    /**
+     * 响应描述，主要在错误的时候获取描述信息
+     */
+    public String message;
 
-    // 返回内容
-    public Object content;
+    /**
+     * 响应数据，响应成功时需要获取的数据内容
+     */
+    public Object data;
 
-    ResValue(){}
+    ResValue() {
+    }
 
-    ResValue(int code, String desc) {
+    ResValue(boolean success, int code, String message) {
+        this.success = success;
         this.code = code;
-        this.desc = desc;
+        this.message = message;
     }
 
-    ResValue(int code, String desc, Object content) {
+    ResValue(boolean success, int code, String message, Object data) {
+        this.success = success;
         this.code = code;
-        this.desc = desc;
-        this.content = content;
+        this.message = message;
+        this.data = data;
     }
 
-    public static ResValue defaultSuccess() {
-        return new ResValue(ResCode.SUCCESS.getCode(), ResCode.SUCCESS.getDesc(), null);
+    public static ResValue success() {
+        return new ResValue(true, ResCode.SUCCESS.getCode(), ResCode.SUCCESS.getMessage(), null);
     }
 
-    public static ResValue defaultFailed() {
-        return new ResValue(ResCode.FAILED.getCode(), ResCode.FAILED.getDesc(), null);
+    public static ResValue successWithMsg(String message) {
+        return new ResValue(true, ResCode.SUCCESS.getCode(), message, null);
     }
 
-    public static ResValue invalidParam() {
-        return new ResValue(ResCode.INVALID_PARAM.getCode(), ResCode.INVALID_PARAM.getDesc(), null);
+    public static ResValue successWithData(Object data) {
+        return new ResValue(true, ResCode.SUCCESS.getCode(), ResCode.SUCCESS.getMessage(), data);
     }
 
-    public static ResValue unauthorizedError() {
-        return new ResValue(ResCode.UNAUTHORIZED_ERROR.getCode(), ResCode.UNAUTHORIZED_ERROR.getDesc(), null);
+    public static ResValue successWithMsgAndData(String message, Object data) {
+        return new ResValue(true, ResCode.SUCCESS.getCode(), message, data);
     }
 
-    public static ResValue internalError() {
-        return new ResValue(ResCode.INTERNAL_ERROR.getCode(), ResCode.INTERNAL_ERROR.getDesc(), null);
+    public static ResValue failed() {
+        return new ResValue(false, ResCode.FAILED.getCode(), "失败", null);
     }
 
-    public static ResValue fuseError() {
-        return new ResValue(ResCode.FUSE_ERROR.getCode(), ResCode.FUSE_ERROR.getDesc(), null);
+    public static ResValue failedWithCodeAndMsg(Integer code, String message) {
+        return new ResValue(false, code, "失败", message);
+    }
+
+    public static ResValue failedWithResCode(ResCode resCode) {
+        return new ResValue(false, resCode.getCode(), resCode.getMessage(), null);
     }
 
     public int getCode() {
@@ -67,19 +85,19 @@ public class ResValue implements Serializable {
         this.code = code;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getMessage() {
+        return message;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public Object getContent() {
-        return content;
+    public Object getData() {
+        return data;
     }
 
-    public void setContent(Object content) {
-        this.content = content;
+    public void setData(Object data) {
+        this.data = data;
     }
 }
