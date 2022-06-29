@@ -1,4 +1,4 @@
-package com.citycloud.nacostest.score;
+package com.citycloud.nacostest.stock;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
@@ -23,10 +23,10 @@ public class AutoGenerator {
     private static final String password = "123456";
 
     public static void main(String[] args) {
-        String moduleName = "score";
+        String moduleName = "stock";
         String packageName = "com.citycloud.nacostest";
         List<String> tables = new ArrayList<>();
-        tables.add("test_score");
+        tables.add("test_stock");
         generatorCode(moduleName, packageName, tables);
     }
 

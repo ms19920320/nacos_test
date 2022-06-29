@@ -1,6 +1,6 @@
 spring:
   application:
-    name: stock
+    name: order
   profiles:
     active: dev
 
