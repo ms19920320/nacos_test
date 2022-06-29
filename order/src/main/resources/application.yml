@@ -4,6 +4,13 @@ spring:
   profiles:
     active: dev
 
+rocketmq:
+  #  服务器地址
+  name-server: 120.46.181.75:9876
+  producer:
+    #    消息组
+    group: order
+
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.citycloud.nacostest.score.mapper
