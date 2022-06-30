@@ -1,3 +1,6 @@
 /.idea/
-/order/target/classes/
-/score/target/classes/
+/common/target/
+/gateway/target/
+/order/target/
+/score/target/
+/stock/target/
