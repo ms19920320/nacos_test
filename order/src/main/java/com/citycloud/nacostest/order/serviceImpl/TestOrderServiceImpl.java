@@ -4,6 +4,7 @@ import com.citycloud.nacostest.order.entity.TestOrder;
 import com.citycloud.nacostest.order.mapper.TestOrderMapper;
 import com.citycloud.nacostest.order.service.TestOrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TestOrderServiceImpl extends ServiceImpl<TestOrderMapper, TestOrder> implements TestOrderService {
+    @Autowired
+    private TestOrderService testOrderService;
 
+    @Override
+    public int insert(TestOrder testOrder) {
+        return testOrderService.insert(testOrder);
+    }
 }

@@ -49,3 +49,5 @@ spring:
           file-extension: yml
           data-id: dev-score-api.yml
           refresh: true
+  main:
+    allow-circular-references: true

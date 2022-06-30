@@ -1,10 +1,8 @@
 package com.citycloud.nacostest.order.service;
 
-import com.citycloud.nacostest.order.entity.TestOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.citycloud.nacostest.order.entity.TestOrder;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import javax.validation.Valid;
 
 /**
  * <p>
@@ -21,5 +19,5 @@ public interface TestOrderService extends IService<TestOrder> {
      * @param testOrder 参数
      * @return 插入结果
      */
-    int insert(@RequestBody @Valid TestOrder testOrder);
+    int insert(@RequestBody TestOrder testOrder);
 }
