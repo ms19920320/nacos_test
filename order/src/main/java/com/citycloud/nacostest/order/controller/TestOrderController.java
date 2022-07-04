@@ -35,8 +35,12 @@ public class TestOrderController {
     }
 
     @PostMapping(value = "validateGlobalException")
-    public ResValue validateGlobalException() {
-        int a = 1 / 0;
+    public ResValue validateGlobalException() throws Exception {
+        try {
+            int a = 1 / 0;
+        } catch (Exception e) {
+            throw new Exception("aa");
+        }
         return ResValue.successWithMsg("验证全局异常");
     }
 
