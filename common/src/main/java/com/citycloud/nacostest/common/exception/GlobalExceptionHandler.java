@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.FileNotFoundException;
-
 /**
  * 全局异常处理
  *
@@ -29,11 +27,11 @@ public class GlobalExceptionHandler {
         return resValue;
     }
 
-    @ExceptionHandler(value = FileNotFoundException.class)
+    @ExceptionHandler(value = MyException.class)
     @ResponseBody
-    public ResValue fileNotExceptionHandler(FileNotFoundException e) {
+    public ResValue myException(MyException e) {
         ResValue resValue = ResValue.failed();
-        log.info("the global FileNotFoundException:{}", e.toString());
+        log.info("the global MyException:{}", e.toString());
         return resValue;
     }
 

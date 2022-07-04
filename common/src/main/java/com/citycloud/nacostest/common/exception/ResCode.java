@@ -15,7 +15,7 @@ public enum ResCode {
     SUCCESS(0, "success"),
 
     // 失败
-    FAILED(1000, "fail"),
+    FAILED(1, "fail"),
 
     // 失败，参数无效
     INVALID_PARAM(1001, "Invalid parameter"),

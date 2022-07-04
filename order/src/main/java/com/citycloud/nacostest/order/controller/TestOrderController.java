@@ -1,6 +1,7 @@
 package com.citycloud.nacostest.order.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.citycloud.nacostest.common.exception.MyException;
 import com.citycloud.nacostest.common.exception.ResValue;
 import com.citycloud.nacostest.order.entity.TestOrder;
 import com.citycloud.nacostest.order.service.TestOrderService;
@@ -35,11 +36,11 @@ public class TestOrderController {
     }
 
     @PostMapping(value = "validateGlobalException")
-    public ResValue validateGlobalException() throws Exception {
+    public ResValue validateGlobalException() throws MyException {
         try {
             int a = 1 / 0;
         } catch (Exception e) {
-            throw new Exception("aa");
+            throw new MyException();
         }
         return ResValue.successWithMsg("验证全局异常");
     }
