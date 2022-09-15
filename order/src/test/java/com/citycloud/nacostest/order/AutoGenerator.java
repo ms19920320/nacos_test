@@ -26,7 +26,7 @@ public class AutoGenerator {
         String moduleName = "order";
         String packageName = "com.citycloud.nacostest";
         List<String> tables = new ArrayList<>();
-        tables.add("test_order");
+        tables.add("test_goods");
         generatorCode(moduleName, packageName, tables);
     }
 

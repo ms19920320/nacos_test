@@ -6,7 +6,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: com.citycloud.nacostest.score.mapper
+  type-aliases-package: com.citycloud.nacostest.stock.mapper
   configuration:
     map-underscore-to-camel-case: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

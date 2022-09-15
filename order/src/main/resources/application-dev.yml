@@ -3,7 +3,7 @@ server:
   servlet:
     context-path: /${spring.application.name}
 
-rocketmq:
-  name-server: 120.46.181.75:9876
-  producer:
-    group: provider
+#rocketmq:
+#  name-server: 120.46.181.75:9876
+#  producer:
+#    group: provider
