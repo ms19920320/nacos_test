@@ -1,10 +1,10 @@
 spring:
   # Redis连接配置
   redis:
-    host: 120.48.38.144
+    host: 172.15.4.120 # 120.48.38.144
     port: 6379
-    password: 123456
-    database: 0
+    password: ctzqrs30
+    database: 5
     timeout: 1800000  # 连接超时时间（毫秒）
     lettuce:
       pool:
