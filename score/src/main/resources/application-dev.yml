@@ -1,7 +1,5 @@
 server:
   port: 8060
-  servlet:
-    context-path: /${spring.application.name}
 
 #rocketmq:
 #  name-server: 120.46.181.75:9876

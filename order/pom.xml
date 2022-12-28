@@ -17,6 +17,11 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- 注意，微服务通过RestTemplate调用，一定要引入这个包 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
