@@ -20,6 +20,8 @@ public class OrderTestController {
     @GetMapping("/aa")
     public ResValue aa() {
         System.out.println("aa");
-        return ResValue.success();
+        ResValue success = ResValue.success();
+        success.setData("hello world");
+        return success;
     }
 }
