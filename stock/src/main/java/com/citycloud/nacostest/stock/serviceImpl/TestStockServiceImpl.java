@@ -1,5 +1,6 @@
 package com.citycloud.nacostest.stock.serviceImpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.citycloud.nacostest.common.exception.ResValue;
 import com.citycloud.nacostest.stock.entity.TestStock;
@@ -26,10 +27,12 @@ public class TestStockServiceImpl extends ServiceImpl<TestStockMapper, TestStock
     @Override
     public ResValue updateStock(Map<String, Object> params) {
 
-        String accountId = (String) params.get("goodsId");
+        String goodsId = (String) params.get("goodsId");
         Integer num = (Integer) params.get("count");
         boolean isAdd = (boolean) params.get("isAdd");
-        TestStock testStock = testStockMapper.selectById(accountId);
+        QueryWrapper<TestStock> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(TestStock::getGoodsId,goodsId);
+        TestStock testStock = testStockMapper.selectOne(queryWrapper);
         if (testStock == null) {
             return ResValue.failedWithCodeAndMsg(1000, "无效的货物id");
         }

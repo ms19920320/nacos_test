@@ -65,7 +65,7 @@ public class TestOrderServiceImpl extends ServiceImpl<TestOrderMapper, TestOrder
             Map<String, Object> stockParam = new HashMap<>();
             stockParam.put("goodsId", goodsId);
             stockParam.put("count", count);
-            stockParam.put("isAdd", true);
+            stockParam.put("isAdd", false);
             iStockService.updateStock(stockParam);
         });
         TestOrder testOrder = new TestOrder();
