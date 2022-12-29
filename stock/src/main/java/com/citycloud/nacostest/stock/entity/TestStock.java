@@ -11,7 +11,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author ms
@@ -39,7 +39,7 @@ public class TestStock implements Serializable {
 
     @ApiModelProperty("更新时间")
     @TableField("update_time")
-    private LocalDateTime updateTime;
+    private String updateTime;
 
 
 }

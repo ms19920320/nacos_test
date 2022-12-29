@@ -1,7 +1,9 @@
 package com.citycloud.nacostest.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.citycloud.nacostest.common.exception.ResValue;
 import com.citycloud.nacostest.order.entity.TestOrder;
+import com.citycloud.nacostest.order.vo.TestOrderVo;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -19,5 +21,5 @@ public interface TestOrderService extends IService<TestOrder> {
      * @param testOrder 参数
      * @return 插入结果
      */
-    int insert(@RequestBody TestOrder testOrder);
+    ResValue insert(@RequestBody TestOrderVo testOrderVo);
 }

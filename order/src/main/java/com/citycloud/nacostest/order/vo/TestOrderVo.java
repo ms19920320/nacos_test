@@ -1,4 +1,4 @@
-package com.citycloud.nacostest.order.entity;
+package com.citycloud.nacostest.order.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,26 +22,17 @@ import java.util.Date;
  */
 @Getter
 @Setter
-@TableName("test_order")
-@ApiModel(value = "TestOrder对象", description = "订单信息")
-public class TestOrder implements Serializable {
+public class TestOrderVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("主键")
-    @TableField("id")
+
     private String id;
 
-    @ApiModelProperty("账号id")
-    @TableField("account_id")
     private String accountId;
 
-    @ApiModelProperty("订单详情")
-    @TableField("detail")
-    private String detail;
+    private List<Map<String, Object>> detail;
 
-    @ApiModelProperty("创建时间")
-    @TableField("create_time")
-    private String createTime;
+    private Date createTime;
 
 }

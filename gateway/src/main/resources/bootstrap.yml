@@ -69,11 +69,24 @@ spring:
 
         # 服务配置
         - id: score
-          uri: lb://socre
+          uri: lb://score
           predicates:
             - Path=/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@myLimiter}"  # 自定义类,限流配置，通过ip限流防止同一个ip恶意访问
+                redis-rate-limiter.replenishRate: 1  # 令牌放入桶中速率
+                redis-rate-limiter.burstCapacity: 1  # 桶中最大令牌数
+
         # 服务配置
         - id: order
           uri: lb://order
+          predicates:
+            - Path=/**
+
+        # 服务配置
+        - id: stock
+          uri: lb://stock
           predicates:
             - Path=/**

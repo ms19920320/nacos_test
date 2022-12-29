@@ -1,14 +1,18 @@
 package com.citycloud.nacostest.stock.serviceImpl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.citycloud.nacostest.common.exception.ResValue;
 import com.citycloud.nacostest.stock.entity.TestStock;
 import com.citycloud.nacostest.stock.mapper.TestStockMapper;
 import com.citycloud.nacostest.stock.service.TestStockService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author ms
@@ -16,5 +20,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TestStockServiceImpl extends ServiceImpl<TestStockMapper, TestStock> implements TestStockService {
+    @Autowired
+    private TestStockMapper testStockMapper;
 
+    @Override
+    public ResValue updateStock(Map<String, Object> params) {
+
+        String accountId = (String) params.get("goodsId");
+        Integer num = (Integer) params.get("count");
+        boolean isAdd = (boolean) params.get("isAdd");
+        TestStock testStock = testStockMapper.selectById(accountId);
+        if (testStock == null) {
+            return ResValue.failedWithCodeAndMsg(1000, "无效的货物id");
+        }
+        if (isAdd) {
+            testStock.setStock(testStock.getStock() + num);
+        } else {
+            Long stock = testStock.getStock();
+            if (stock < num) {
+                return ResValue.failedWithCodeAndMsg(1000, "存储不足");
+            }
+            testStock.setStock(testStock.getStock() - num);
+        }
+        testStockMapper.updateById(testStock);
+        return ResValue.success();
+    }
 }

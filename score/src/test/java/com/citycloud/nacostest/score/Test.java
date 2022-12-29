@@ -1,5 +1,6 @@
 package com.citycloud.nacostest.score;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -14,18 +15,35 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author 孟帅
  * @since 2022/6/8
  */
 public class Test {
-    public static void main(String[] args) throws MQClientException, MQBrokerException, RemotingException, InterruptedException {
-        // producerMessage();
-        consumerMessage();
+    public static void main(String[] args) throws MQClientException, MQBrokerException, RemotingException,
+            InterruptedException {
+
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("goodsId", "73d9d0fa-d7c5-4c96-8038-cf82732443eb");
+        jsonObject.put("count", 2);
+
+        JSONObject jsonObject1 = new JSONObject();
+        jsonObject1.put("goodsId", "7d0b9315-9c6e-44e9-8893-1083ff66bbd9");
+        jsonObject1.put("count", 3);
+
+        jsonArray.add(jsonObject);
+        jsonArray.add(jsonObject1);
+        System.out.println(jsonArray.toJSONString());
+        String str = "\"[{\\\"goodsId\\\":\\\"73d9d0fa-d7c5-4c96-8038-cf82732443eb\\\",\\\"count\\\":2},\" +\n" +
+                "                \"{\\\"goodsId\\\":\\\"7d0b9315-9c6e-44e9-8893-1083ff66bbd9\\\",\\\"count\\\":3}]\"";
+
     }
 
-    private static void producerMessage() throws MQClientException, RemotingException, MQBrokerException, InterruptedException {
+    private static void producerMessage() throws MQClientException, RemotingException, MQBrokerException,
+            InterruptedException {
         //1. 创建消息生产者, 指定生产者所属的组名
         DefaultMQProducer producer = new DefaultMQProducer("myproducer-group");
         //2. 指定Nameserver地址
@@ -42,7 +60,8 @@ public class Test {
         producer.shutdown();
     }
 
-    private static void consumerMessage() throws MQClientException, RemotingException, MQBrokerException, InterruptedException {
+    private static void consumerMessage() throws MQClientException, RemotingException, MQBrokerException,
+            InterruptedException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("consumer-group");
         // 2.为消费者设置NameServer的地址
         consumer.setNamesrvAddr("120.46.181.75:9876");
@@ -52,7 +71,8 @@ public class Test {
         // 4.设置一个回调函数，并在函数中编写接收到的消息之后的处理办法
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list,
+                                                            ConsumeConcurrentlyContext consumeConcurrentlyContext) {
                 // 消费逻辑
                 System.out.println("message=====> " + JSONObject.toJSONString(list));
                 // 返回消费成功状态
