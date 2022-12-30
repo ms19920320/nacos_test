@@ -1,8 +1,7 @@
 package com.citycloud.nacostest.order.serviceImpl;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.citycloud.nacostest.common.exception.ResValue;
 import com.citycloud.nacostest.order.entity.TestGoods;
 import com.citycloud.nacostest.order.entity.TestOrder;
@@ -11,7 +10,6 @@ import com.citycloud.nacostest.order.fegin.IStockService;
 import com.citycloud.nacostest.order.mapper.TestGoodsMapper;
 import com.citycloud.nacostest.order.mapper.TestOrderMapper;
 import com.citycloud.nacostest.order.service.TestOrderService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.citycloud.nacostest.order.vo.TestOrderVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +67,7 @@ public class TestOrderServiceImpl extends ServiceImpl<TestOrderMapper, TestOrder
             iStockService.updateStock(stockParam);
         });
         TestOrder testOrder = new TestOrder();
-        BeanUtils.copyProperties(testOrderVo,testOrder);
+        BeanUtils.copyProperties(testOrderVo, testOrder);
         testOrder.setId(UUID.randomUUID().toString());
         testOrder.setDetail(JSON.toJSONString(detail));
         // 插入订单
