@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -27,32 +28,40 @@ public class TestScoreServiceImpl extends ServiceImpl<TestScoreMapper, TestScore
 
     @Override
     public ResValue updateScore(Map<String, Object> params) {
-        String accountId = (String) params.get("accountId");
-        Integer score = (Integer) params.get("score");
-        boolean isAdd = (boolean) params.get("isAdd");
+        TestScore testScore = testScoreMapper.selectById("03efc2de-6ede-492a-9437-d0a1af8fb207");
+        testScore.setScore(100000L);
         QueryWrapper<TestScore> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(TestScore::getAccountId, accountId);
-        TestScore testScore = testScoreMapper.selectOne(queryWrapper);
-        if (testScore == null) {
-            testScore = new TestScore();
-            testScore.setId(UUID.randomUUID().toString());
-            testScore.setAccountId(accountId);
-            testScore.setScore(0L + score);
-            testScoreMapper.insert(testScore);
-            return ResValue.success();
-        }
-        if (isAdd) {
-            testScore.setScore(testScore.getScore() + score);
-        } else {
-            Long score1 = testScore.getScore();
-            if (score1 < score) {
-                ResValue failed = ResValue.failed();
-                failed.setMessage("积分不足");
-                return failed;
-            }
-            testScore.setScore(testScore.getScore() - score);
-        }
-        testScoreMapper.updateById(testScore);
+        queryWrapper.lambda().eq(TestScore::getScore, 200);
+        int update = testScoreMapper.update(testScore, queryWrapper);
+        System.out.println("update is " + update);
+
+
+//        String accountId = (String) params.get("accountId");
+//        Integer score = (Integer) params.get("score");
+//        boolean isAdd = (boolean) params.get("isAdd");
+//        QueryWrapper<TestScore> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.lambda().eq(TestScore::getAccountId, accountId);
+//        TestScore testScore = testScoreMapper.selectOne(queryWrapper);
+//        if (testScore == null) {
+//            testScore = new TestScore();
+//            testScore.setId(UUID.randomUUID().toString());
+//            testScore.setAccountId(accountId);
+//            testScore.setScore(0L + score);
+//            testScoreMapper.insert(testScore);
+//            return ResValue.success();
+//        }
+//        if (isAdd) {
+//            testScore.setScore(testScore.getScore() + score);
+//        } else {
+//            Long score1 = testScore.getScore();
+//            if (score1 < score) {
+//                ResValue failed = ResValue.failed();
+//                failed.setMessage("积分不足");
+//                return failed;
+//            }
+//            testScore.setScore(testScore.getScore() - score);
+//        }
+//        testScoreMapper.updateById(testScore);
         return ResValue.success();
     }
 }

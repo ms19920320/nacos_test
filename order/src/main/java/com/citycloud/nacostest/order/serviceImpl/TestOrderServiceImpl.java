@@ -14,6 +14,7 @@ import com.citycloud.nacostest.order.vo.TestOrderVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,7 @@ public class TestOrderServiceImpl extends ServiceImpl<TestOrderMapper, TestOrder
     private IStockService iStockService;
 
     @Override
+    @Transactional
     public ResValue insert(TestOrderVo testOrderVo) {
         List<Map<String, Object>> detail = testOrderVo.getDetail();
         String accountId = testOrderVo.getAccountId();
@@ -72,6 +74,7 @@ public class TestOrderServiceImpl extends ServiceImpl<TestOrderMapper, TestOrder
         testOrder.setDetail(JSON.toJSONString(detail));
         // 插入订单
         testOrderMapper.insert(testOrder);
+        int b = 1/0;
         return ResValue.success();
     }
 }

@@ -23,7 +23,7 @@ public class ControllerAspect {
     }
 
     @Before("@annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void before(JoinPoint joinPoint) {
+    public void andbefore(JoinPoint joinPoint) {
         Object[] args = joinPoint.getArgs();
         // log.info("before param is :{}", JSON.toJSONString(args));
     }

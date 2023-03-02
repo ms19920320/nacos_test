@@ -33,6 +33,6 @@ public class TestOrderVo implements Serializable {
 
     private List<Map<String, Object>> detail;
 
-    private Date createTime;
+    private String createTime;
 
 }
