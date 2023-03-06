@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class AutoGenerator {
 
-    private static final String url = "jdbc:mysql://120.46.181.75:3306/test?useSSL=false&useUnicode=true" +
+    private static final String url = "jdbc:mysql://120.48.48.87:3306/test?useSSL=false&useUnicode=true" +
             "&characterEncoding=utf-8&serverTimezone=GMT%2B8";
     private static final String username = "root";
     private static final String password = "123456";
