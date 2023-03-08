@@ -21,7 +21,7 @@ public class ResValue implements Serializable {
     /**
      * 响应码，主要在错误的时候区分错误类型
      */
-    public int code;
+    public String  code;
 
     /**
      * 响应描述，主要在错误的时候获取描述信息
@@ -36,13 +36,13 @@ public class ResValue implements Serializable {
     ResValue() {
     }
 
-    ResValue(boolean success, int code, String message) {
+    ResValue(boolean success, String code, String message) {
         this.success = success;
         this.code = code;
         this.message = message;
     }
 
-    ResValue(boolean success, int code, String message, Object data) {
+    ResValue(boolean success, String code, String message, Object data) {
         this.success = success;
         this.code = code;
         this.message = message;
@@ -69,7 +69,11 @@ public class ResValue implements Serializable {
         return new ResValue(false, ResCode.FAILED.getCode(), "失败", null);
     }
 
-    public static ResValue failedWithCodeAndMsg(Integer code, String message) {
+    public static ResValue failedWithMsg(String message) {
+        return new ResValue(false, ResCode.FAILED.getCode(), message, null);
+    }
+
+    public static ResValue failedWithCodeAndMsg(String code, String message) {
         return new ResValue(false, code, "失败", message);
     }
 
@@ -77,11 +81,11 @@ public class ResValue implements Serializable {
         return new ResValue(false, resCode.getCode(), resCode.getMessage(), null);
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

@@ -32,6 +32,10 @@ public class TestUser implements Serializable {
     @TableField("name")
     private String name;
 
+    @ApiModelProperty("密码")
+    @TableField("password")
+    private String password;
+
     @ApiModelProperty("手机号码")
     @TableField("telephone")
     private String telephone;

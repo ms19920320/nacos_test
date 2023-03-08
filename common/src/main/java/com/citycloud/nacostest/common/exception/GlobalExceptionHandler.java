@@ -23,16 +23,15 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ResValue exceptionHandler(Exception e) {
         ResValue resValue = ResValue.failedWithResCode(ResCode.INTERNAL_ERROR);
-        log.info("the global exception:{}", e.toString());
+        log.info("the global exception:{}", e.getMessage());
         return resValue;
     }
 
     @ExceptionHandler(value = MyException.class)
     @ResponseBody
     public ResValue myException(MyException e) {
-        ResValue resValue = ResValue.failed();
-        log.info("the global MyException:{}", e.toString());
-        return resValue;
+        log.info("the global MyException:{}", e.getMessage());
+        return ResValue.failedWithMsg(e.getMessage());
     }
 
 }

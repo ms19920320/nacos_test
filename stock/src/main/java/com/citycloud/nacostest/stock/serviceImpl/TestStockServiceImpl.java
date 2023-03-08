@@ -34,14 +34,14 @@ public class TestStockServiceImpl extends ServiceImpl<TestStockMapper, TestStock
         queryWrapper.lambda().eq(TestStock::getGoodsId,goodsId);
         TestStock testStock = testStockMapper.selectOne(queryWrapper);
         if (testStock == null) {
-            return ResValue.failedWithCodeAndMsg(1000, "无效的货物id");
+            return ResValue.failedWithCodeAndMsg("1000", "无效的货物id");
         }
         if (isAdd) {
             testStock.setStock(testStock.getStock() + num);
         } else {
             Long stock = testStock.getStock();
             if (stock < num) {
-                return ResValue.failedWithCodeAndMsg(1000, "存储不足");
+                return ResValue.failedWithCodeAndMsg("1000", "存储不足");
             }
             testStock.setStock(testStock.getStock() - num);
         }
