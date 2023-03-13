@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.citycloud.nacostest.gateway.config;
+package com.citycloud.nacostest.order.config;
 
 import com.citycloud.nacostest.common.annotation.NoToken;
 import com.citycloud.nacostest.common.entity.TestUser;
