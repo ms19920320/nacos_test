@@ -21,17 +21,17 @@ public class ResValue implements Serializable {
     /**
      * 响应码，主要在错误的时候区分错误类型
      */
-    public String  code;
+    private String  code;
 
     /**
      * 响应描述，主要在错误的时候获取描述信息
      */
-    public String message;
+    private String message;
 
     /**
      * 响应数据，响应成功时需要获取的数据内容
      */
-    public Object data;
+    private Object data;
 
     ResValue() {
     }
@@ -103,5 +103,13 @@ public class ResValue implements Serializable {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }
