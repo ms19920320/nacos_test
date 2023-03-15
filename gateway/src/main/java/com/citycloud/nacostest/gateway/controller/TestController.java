@@ -8,6 +8,8 @@ import com.citycloud.nacostest.common.exception.ResValue;
 import com.citycloud.nacostest.common.util.RsaUtils;
 import com.citycloud.nacostest.gateway.mapper.TestUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 @RequestMapping("testController")
+@RefreshScope
 public class TestController {
 
     @Autowired
@@ -34,9 +37,12 @@ public class TestController {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+    @Value("${name}")
+    private String name;
+
     @GetMapping("/test")
     public String test() {
-        return "gateway test";
+        return "gateway test " + name;
     }
 
     @PostMapping
