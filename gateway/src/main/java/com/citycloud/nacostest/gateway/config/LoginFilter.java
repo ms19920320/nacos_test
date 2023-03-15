@@ -20,8 +20,13 @@ public class LoginFilter implements GlobalFilter, Ordered {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+    public LoginFilter(){
+        System.out.println("aa loginFilter");
+    }
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        System.out.println("bb filter");
         return chain.filter(exchange);
 
 //        // 获取token头

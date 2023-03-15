@@ -68,10 +68,3 @@ spring:
           uri: lb://stock
           predicates:
             - Path=/**
-
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: com.citycloud.nacostest.gateway.mapper
-  configuration:
-    map-underscore-to-camel-case: false
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

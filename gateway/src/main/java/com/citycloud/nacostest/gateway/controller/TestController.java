@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2022/5/7
  */
 @RestController
-@RequestMapping("testController")
+@RequestMapping("/testController")
 @RefreshScope
 public class TestController {
 

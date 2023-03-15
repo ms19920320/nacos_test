@@ -41,19 +41,6 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     }
 
     /**
-     * spring.mvc.pathmatch.use-suffix-pattern=false
-     * spring.mvc.pathmatch.use-registered-suffix-pattern=true
-     *
-     * @param pathMatchConfigurer
-     */
-    @Override
-    public void configurePathMatch(PathMatchConfigurer pathMatchConfigurer) {
-        pathMatchConfigurer.setUseSuffixPatternMatch(false);
-        //将http://www/ww.xx的链接同http://www/ww等价，配置完后会在匹配servlet时将.xx自动忽略
-        pathMatchConfigurer.setUseRegisteredSuffixPatternMatch(true);
-    }
-
-    /**
      * spring.mvc.contentnegotiation.favor-path-extension=false
      *
      * @param configurer

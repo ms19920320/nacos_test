@@ -25,7 +25,6 @@ public class TestUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("主键")
-    @TableField("id")
     private String id;
 
     @ApiModelProperty("账号名称")
