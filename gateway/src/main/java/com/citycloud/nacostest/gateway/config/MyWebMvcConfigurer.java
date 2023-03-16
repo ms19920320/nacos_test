@@ -36,7 +36,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
-                .addPathPatterns("/gateway/**")
+                .addPathPatterns("/**")
         ;
     }
 

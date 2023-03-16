@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 public class MyLimiter implements KeyResolver {
     @Override
     public Mono<String> resolve(ServerWebExchange exchange) {
+        System.out.println("MyLimiter resolve");
         if (exchange == null) {
             return null;
         }

@@ -1,54 +1,35 @@
-package com.citycloud.nacostest.gateway.controller;
+package com.citycloud.nacostest.authority.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.citycloud.nacostest.common.annotation.NoToken;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.citycloud.nacostest.authority.mapper.TestUserMapper;
+import com.citycloud.nacostest.authority.service.TestUserService;
 import com.citycloud.nacostest.common.entity.TestUser;
 import com.citycloud.nacostest.common.exception.ResValue;
 import com.citycloud.nacostest.common.util.RsaUtils;
-import com.citycloud.nacostest.gateway.mapper.TestUserMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * 测试类
+ * 用户表 服务实现类
  *
- * @author 孟帅
- * @since 2022/5/7
+ * @author ms
+ * @since 2022-08-18
  */
-@RestController
-@RequestMapping("/gateway/testController")
-@RefreshScope
-public class TestController {
+@Service
+public class TestUserServiceImpl extends ServiceImpl<TestUserMapper, TestUser> implements TestUserService {
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private TestUserMapper userMapper;
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
-
-    @Value("${name}")
-    private String name;
-
-    @GetMapping("/test")
-    public String test() {
-        return "gateway test " + name;
-    }
-
-    @PostMapping
-    @NoToken
-    @RequestMapping("/login")
-    public ResValue login(@RequestBody TestUser testUser) {
+    @Override
+    public ResValue login(TestUser testUser) {
         if (testUser == null) {
             return ResValue.failedWithMsg("请输入用户名或者密码");
         }
@@ -70,8 +51,6 @@ public class TestController {
         } catch (Exception e) {
             return ResValue.failedWithMsg("系统内部错误，请稍后再试");
         }
-        TestUser o = (TestUser) redisTemplate.opsForValue().get(token);
-        System.out.println("o is " + JSON.toJSONString(o));
         return ResValue.successWithMsgAndData("登录成功", token);
     }
 }

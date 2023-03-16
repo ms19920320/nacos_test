@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: authority
+  main:
+    web-application-type: reactive
+  # nacos配置
+  cloud:
+    nacos:
+      username: nacos
+      password: 123456
+      discovery:
+        enabled: true
+        server-addr: 120.48.48.87:8848
+        namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
+      config:
+        enabled: true
+        server-addr: 120.48.48.87:8848
+        namespace: 716ca2c6-7e8d-4db9-ab21-dd864f7f87f0
+        group: nacos-test-group
+        shared-configs[0]:
+          group: nacos-test-group
+          file-extension: yml
+          data-id: authority-application.yml
+          refresh: true
+        shared-configs[1]:
+          group: nacos-test-group
+          file-extension: yml
+          data-id: authority-common.yml
+          refresh: true

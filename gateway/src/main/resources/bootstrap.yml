@@ -27,8 +27,8 @@ spring:
           file-extension: yml
           data-id: gateway-common.yml
           refresh: true
-
     gateway:
+      enabled: true
       discovery:
         locator:
           enabled: true
@@ -37,7 +37,7 @@ spring:
         - id: gateway
           uri: lb://gateway
           predicates:
-            - Path=/gateway/**
+            - Path=/**
           filters:
             - name: RequestRateLimiter
               args:
@@ -61,7 +61,7 @@ spring:
         - id: order
           uri: lb://order
           predicates:
-            - Path=/**
+            - Path=/order/**
 
         # 服务配置
         - id: stock
