@@ -68,3 +68,9 @@ spring:
           uri: lb://stock
           predicates:
             - Path=/**
+
+        # 服务配置
+        - id: authority
+          uri: lb://authority
+          predicates:
+            - Path=/aaa/**
