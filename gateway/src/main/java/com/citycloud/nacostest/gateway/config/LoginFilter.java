@@ -1,18 +1,25 @@
 package com.citycloud.nacostest.gateway.config;
 
-import com.citycloud.nacostest.common.exception.MyException;
+import com.alibaba.fastjson.JSON;
+import com.citycloud.nacostest.common.exception.ResValue;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +30,8 @@ import java.util.List;
  * @since 2023/03/09
  **/
 @Component
+@RefreshScope
+@Service
 public class LoginFilter implements GlobalFilter, Ordered {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
@@ -50,13 +59,29 @@ public class LoginFilter implements GlobalFilter, Ordered {
         // 获取token头
         String token = request.getHeaders().getFirst("token");
         if (StringUtils.isEmpty(token)) {
-            throw new MyException("无法获取token");
+            return writeResponse(exchange.getResponse(), ResValue.failedWithMsg("请输入token"));
         }
         Object o = redisTemplate.opsForValue().get(token);
         if (o == null) {
-            throw new MyException("token校验不通过");
+            return writeResponse(exchange.getResponse(), ResValue.failedWithMsg("token校验不通过"));
         }
         return chain.filter(exchange);
+    }
+
+    /**
+     * 构建返回内容
+     *
+     * @param response ServerHttpResponse
+     * @param resValue 输出返回内容
+     * @return Mono
+     */
+    protected Mono<Void> writeResponse(ServerHttpResponse response, ResValue resValue) {
+        byte[] bits = JSON.toJSONString(resValue).getBytes(StandardCharsets.UTF_8);
+        DataBuffer buffer = response.bufferFactory().wrap(bits);
+        response.setStatusCode(HttpStatus.OK);
+        // 指定编码，否则在浏览器中会中文乱码
+        response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
+        return response.writeWith(Mono.just(buffer));
     }
 
     @Override
