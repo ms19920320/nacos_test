@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author 孟帅
  * @since 2022/4/22
  */
-@SpringBootApplication(scanBasePackages = "com.citycloud.nacostest.authority")
+@SpringBootApplication(scanBasePackages = {"com.citycloud.nacostest"})
 @EnableDiscoveryClient
 @MapperScan(basePackages = "com.citycloud.nacostest.authority.mapper")
 @EnableFeignClients

@@ -2,6 +2,7 @@ package com.citycloud.nacostest.gateway.config;
 
 import com.alibaba.fastjson.JSON;
 import com.citycloud.nacostest.common.exception.ResValue;
+import com.citycloud.nacostest.common.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +11,6 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -34,7 +34,7 @@ import java.util.List;
 @Service
 public class LoginFilter implements GlobalFilter, Ordered {
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisUtil redisUtil;
 
     /**
      * 不需要校验的接口
@@ -61,7 +61,7 @@ public class LoginFilter implements GlobalFilter, Ordered {
         if (StringUtils.isEmpty(token)) {
             return writeResponse(exchange.getResponse(), ResValue.failedWithMsg("请输入token"));
         }
-        Object o = redisTemplate.opsForValue().get(token);
+        Object o = redisUtil.getValue(token);
         if (o == null) {
             return writeResponse(exchange.getResponse(), ResValue.failedWithMsg("token校验不通过"));
         }

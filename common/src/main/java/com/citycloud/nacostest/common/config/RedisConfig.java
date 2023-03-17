@@ -1,4 +1,4 @@
-package com.citycloud.nacostest.gateway.config;
+package com.citycloud.nacostest.common.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.citycloud.nacostest.common.entity.TestUser;
 import com.citycloud.nacostest.common.exception.ResValue;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>
  *  服务类
@@ -15,6 +17,20 @@ import com.citycloud.nacostest.common.exception.ResValue;
  */
 public interface TestUserService extends IService<TestUser> {
 
+    /**
+     * 登录接口
+     *
+     * @param testUser 用户信息
+     * @return 登录结果
+     */
     ResValue login(TestUser testUser);
+
+    /**
+     * 退出接口
+     *
+     * @param request .
+     * @return
+     */
+    ResValue logout(HttpServletRequest request);
 
 }
