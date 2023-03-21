@@ -1,4 +1,0 @@
-server:
-  port: 8063
-  servlet:
-    context-path: /${spring.application.name}

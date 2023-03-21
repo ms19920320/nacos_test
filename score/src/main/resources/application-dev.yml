@@ -1,7 +1,0 @@
-server:
-  port: 8060
-
-#rocketmq:
-#  name-server: 120.46.181.75:9876
-#  producer:
-#    group: provider
