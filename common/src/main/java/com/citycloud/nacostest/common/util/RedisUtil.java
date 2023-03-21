@@ -1,5 +1,6 @@
 package com.citycloud.nacostest.common.util;
 
+import com.citycloud.nacostest.common.entity.TestUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -41,5 +42,16 @@ public class RedisUtil {
 
     public Object getValue(String key) {
         return redisTemplate.opsForValue().get(key);
+    }
+
+    public TestUser getUser(String key) {
+        Object o = redisTemplate.opsForValue().get(key);
+        if (o == null) {
+            return null;
+        }
+        if (o instanceof TestUser) {
+            return (TestUser) o;
+        }
+        return null;
     }
 }
