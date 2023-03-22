@@ -28,6 +28,5 @@ public class Timing  {
             log.info("aabb failed");
             return ReturnT.FAIL;
         }
-
     }
 }
