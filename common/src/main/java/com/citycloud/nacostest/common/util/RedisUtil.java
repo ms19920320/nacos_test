@@ -54,4 +54,8 @@ public class RedisUtil {
         }
         return null;
     }
+
+    public RedisTemplate<String, Object> getRedisTemplate() {
+        return redisTemplate;
+    }
 }

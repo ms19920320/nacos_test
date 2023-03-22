@@ -8,10 +8,9 @@ import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.citycloud.nacostest.common.exception.ResValue;
-import com.citycloud.nacostest.score.mapper.TestUserMapper;
 import com.citycloud.nacostest.score.feign.IOrderService;
+import com.citycloud.nacostest.score.mapper.TestUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +35,6 @@ public class ScoreTestController {
 
     @Autowired
     private IOrderService orderService;
-
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
 
     @GetMapping(value = "/aa")
     public ResValue aa() {

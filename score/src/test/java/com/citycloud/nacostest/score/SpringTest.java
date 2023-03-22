@@ -1,13 +1,13 @@
 package com.citycloud.nacostest.score;
 
 import com.alibaba.fastjson.JSON;
+import com.citycloud.nacostest.common.util.RedisUtil;
 import com.citycloud.nacostest.score.entity.TestScore;
 import lombok.Data;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.Serializable;
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class SpringTest {
 
     @Autowired
-    private RedisTemplate<String, Object> template;
+    private RedisUtil redisUtil;
 
     @Test
     public void test() {
@@ -36,12 +35,12 @@ public class SpringTest {
         map.put("name", "zs");
         map.put("sex", "男");
 
-        Object map1 = template.opsForValue().get("HANDLE::MENGSHUAI::map");
+        Object map1 = redisUtil.getValue("HANDLE::MENGSHUAI::map");
         if (map1 != null) {
             Map<String, Object> aa = (Map<String, Object>) map1;
             System.out.println("AA IS " + JSON.toJSON(aa));
         } else {
-            template.opsForValue().set("HANDLE::MENGSHUAI::map", map, 600, TimeUnit.SECONDS);
+            redisUtil.setValueTimeUnit("HANDLE::MENGSHUAI::map", map, 600, TimeUnit.SECONDS);
         }
 
 
@@ -64,12 +63,12 @@ public class SpringTest {
 
         String key = "HANDLE::MENGSHUAI::aaa";
 
-        Object o = template.opsForValue().get(key);
+        Object o = redisUtil.getValue(key);
         if (o != null) {
             A b = (A) o;
             System.out.println("end--" + JSON.toJSONString(b));
         } else {
-            template.opsForValue().set(key, a, 600, TimeUnit.SECONDS);
+            redisUtil.setValueTimeUnit(key, a, 600, TimeUnit.SECONDS);
         }
         System.out.println("end");
 
@@ -78,7 +77,7 @@ public class SpringTest {
     @Test
     public void test1() {
         String key = "HANDLE::TOGETHER::CLIENT::15090001::331018";
-        Object o = template.opsForValue().get(key);
+        Object o = redisUtil.getValue(key);
         System.out.println("ed");
 
     }
